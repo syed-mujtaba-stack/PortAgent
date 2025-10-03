@@ -1,0 +1,141 @@
+Metadata-Version: 2.4
+Name: agentic-chatbot
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: dotenv>=0.9.9
+Requires-Dist: fastapi>=0.118.0
+Requires-Dist: openai>=2.1.0
+
+# PortAgent – Portfolio + Agent
+
+PortAgent is an AI-powered freelancing assistant that can be embedded in a developer's portfolio. It helps potential clients discuss their project requirements, ask questions, and get immediate assistance, while automatically saving conversations and notifying the developer.
+
+## Features
+
+- 🤖 AI-powered chat interface for client interactions
+- 📝 Automatic conversation logging to Google Docs
+- 📊 Client information tracking in Google Sheets
+- ✉️ Email notifications for new inquiries
+- 🔒 Privacy-focused with user consent
+- 🎨 Modern, responsive UI
+- 🔄 Easy to embed in any portfolio
+
+## Prerequisites
+
+- Python 3.12 or higher
+- Google Cloud Project with Google Drive, Docs, and Sheets API enabled
+- OpenRouter API key
+- SendGrid account (for email notifications)
+
+## Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/portagent.git
+   cd portagent
+   ```
+
+2. Create a virtual environment and activate it:
+   ```bash
+   python -m venv .venv
+   .\.venv\Scripts\activate  # On Windows
+   source .venv/bin/activate  # On macOS/Linux
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -e .
+   ```
+
+4. Set up environment variables:
+   - Copy `.env.example` to `.env`
+   - Fill in your API keys and configuration
+
+5. Set up Google Cloud:
+   - Create a service account with access to Google Drive, Docs, and Sheets
+   - Download the service account JSON key
+   - Share your Google Drive folder with the service account email
+   - Note your Google Sheet ID
+
+## Configuration
+
+### Environment Variables
+
+Create a `.env` file with the following variables:
+
+```
+# OpenRouter API Key
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+
+# Google Cloud
+GOOGLE_APPLICATION_CREDENTIALS=path/to/your/service-account-key.json
+GOOGLE_DRIVE_FOLDER_ID=your_folder_id_here
+GOOGLE_SHEET_ID=your_sheet_id_here
+
+# SendGrid
+SENDGRID_API_KEY=your_sendgrid_api_key_here
+DEV_EMAIL=your.email@example.com
+
+# Optional: Enable voice features
+ENABLE_VOICE=false
+```
+
+### Google Sheets Setup
+
+Create a Google Sheet with the following columns in the first row:
+1. Timestamp
+2. Client Name
+3. Client Email
+4. Project Title
+5. Document Link
+
+## Running the Application
+
+1. Start the Streamlit app:
+   ```bash
+   streamlit run main.py
+   ```
+
+2. Open your browser to `http://localhost:8501`
+
+## Embedding in Your Portfolio
+
+Add this iframe to your portfolio website:
+
+```html
+<iframe 
+  src="https://your-deployed-app-url.com" 
+  style="width: 400px; height: 600px; border: none; border-radius: 10px;" 
+  title="Chat with me about your project">
+</iframe>
+```
+
+## Deployment
+
+You can deploy PortAgent to any platform that supports Python applications:
+
+- **Streamlit Cloud** (easiest)
+- **Render**
+- **Heroku**
+- **VPS** (with Nginx/PM2)
+
+## Security & Privacy
+
+- All conversations require explicit user consent before saving
+- Sensitive data is not stored in plain text
+- API keys are stored securely in environment variables
+- Google Drive permissions are set to minimum required access
+
+## License
+
+MIT License - Feel free to use this project for any purpose.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## Support
+
+For support, please open an issue on GitHub or contact the maintainers.
